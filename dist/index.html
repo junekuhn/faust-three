@@ -1,0 +1,31 @@
+<html>
+
+<head>
+   <title>Faust and Three</title>
+   <meta charset="utf-8">
+   <meta name="author" content="Justin Kuhn">
+   <meta name="description" content="">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="styles.css">
+   <link rel="icon" type="image/png" href="favicon-32x32.png" />
+   <script type="text/javascript" src="compiledAudio.js"></script>
+</head>
+
+<body>
+
+   <div style="text-align: center">
+      <select name="selectedBuffer" onChange="initdrums(this.options[this.selectedIndex].value)">
+         <option value="256">256</option>
+         <option value="512">512</option>
+         <option selected value="1024">1024</option>
+         <option value="2048">2048</option>
+         <option value="4096">4096</option>
+         <option value="8192">8192</option>
+      </select>
+   </div>
+
+   <script type="text/javascript" src="faust.js"></script>
+   <script type="module" src="js/main.js"></script>
+</body>
+
+</html>
