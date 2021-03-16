@@ -1,11 +1,11 @@
 const path = require('path');
+const CopyPlugin = require("copy-webpack-plugin");
 //const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: {
         main: './src/index.js',
     },
-    watch: true,
     devtool: 'inline-source-map',
     devServer: {
        contentBase: path.join(__dirname, 'dist'),
@@ -20,11 +20,12 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.(png|svg|jpg|gif|glb|gltf|obj)$/,
-                use: [
-                  'file-loader',
-              ],
-          },
+                test: /\.(png|svg|jpg|gif|glb|gltf|hdr|obj)$/,
+                loader: 'file-loader',
+                options: {
+                    name: '[path][name].[ext]',
+                    },
+                },
             {
                 test: /\.css$/,
                 use: [
@@ -34,9 +35,13 @@ module.exports = {
             }
       ],
     },
-//    plugins: [
-//       new HtmlWebpackPlugin({
-//        title: 'Development',
-//      }), 
-//    ],
+   plugins: [
+      new CopyPlugin({
+      patterns: [
+        { from: "./src/models/gltf", to: "./models/gltf/[name][ext]" },
+        { from: "./src/textures", to: "./textures/[name][ext]" },
+        { from: "./src/css", to: "./[name][ext]" },
+      ],
+    }),
+   ],
 };
